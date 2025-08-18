@@ -8,13 +8,13 @@ export interface TMDBMoviesResponse {
   results: Movie[];
 }
 
-const API_KEY = import.meta.env.VITE_TMDB_TOKEN;
+const API_KEy = import.meta.env.VITE_TMDB_TOKEN;
 
 export const tmdb = axios.create({
   baseURL: "https://api.themoviedb.org/3",
   headers: {
     accept: "application/json",
-    Authorization: `Bearer ${API_KEY}`,
+    Authorization: `Bearer ${API_KEy}`,
   },
 });
 export async function searchMovies(
