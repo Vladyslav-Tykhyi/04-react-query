@@ -50,7 +50,8 @@ const App = () => {
   }, [data, debouncedQuery, isLoading, isFetching]);
 
   const movies = useMemo(() => data?.results ?? [], [data]);
-  const totalPages = data?.totalPages ?? 0;
+
+  const totalPages = data?.total_pages ?? 0;
 
   const handleSearchSubmit = (q: string): void => {
     setSelectedMovie(null);
@@ -68,6 +69,8 @@ const App = () => {
         <Loader />
       ) : (
         <>
+          <MovieGrid movies={movies} onSelect={(m) => setSelectedMovie(m)} />
+
           {debouncedQuery && totalPages > 1 && (
             <ReactPaginate
               pageCount={totalPages}
@@ -81,7 +84,6 @@ const App = () => {
               previousLabel="←"
             />
           )}
-          <MovieGrid movies={movies} onSelect={(m) => setSelectedMovie(m)} />
 
           {selectedMovie && (
             <MovieModal
